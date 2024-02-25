@@ -13,6 +13,6 @@ defmodule GhaSandbox do
 
   """
   def hello do
-    :world
+  :world
   end
 end
