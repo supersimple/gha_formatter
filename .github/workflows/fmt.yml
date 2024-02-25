@@ -14,12 +14,11 @@ env:
 jobs:
   checkout_and_format:
     name: Checkout and format the code
+    permissions:
+        contents: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.event.pull_request.head.ref }}
       - uses: erlef/setup-beam@v1
         with:
           otp-version: ${{ env.otp }}
