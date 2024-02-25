@@ -13,13 +13,13 @@ defmodule GhaSandbox do
 
   """
   def hello do
-  :world
+    :world
   end
 
   def goodbye(params) do
     case params do
     "world" -> "hello"
-    _ -> "goodbye"
+      _ -> "goodbye"
     end
   end
 end

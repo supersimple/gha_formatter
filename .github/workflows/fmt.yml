@@ -1,36 +1,15 @@
-name: Format Code
+name: Make sure Elixir code is formatted 
 
 on:
-  push:
-    branches: [main]
   pull_request:
-    types: [opened, reopened, synchronize]
-
-env:
-    MIX_ENV: production
-    elixir: "1.15"
-    otp: "26"
+    types: [opened, reopened]
 
 jobs:
-  checkout_and_format:
-    name: Checkout and format the code
-    permissions:
-        contents: write
+  format:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.event.pull_request.head.ref }}
-      - uses: erlef/setup-beam@v1
-        with:
-          otp-version: ${{ env.otp }}
-          elixir-version: ${{ env.elixir }}
-      - name: Compile project
-        run: mix compile
-      - name: Run formatter
-        run: mix format
-      - uses: actions4git/add-commit-push@v1
-        with:
-          commit-author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-          commit-message: "Format code"
+    - uses: supersimple/mix-format@v1
+      with:
+        elixir_version: "1.15"
+        otp_version: "26"
+        mix_env: "dev"
