@@ -17,9 +17,9 @@ defmodule GhaSandbox do
   end
 
   def goodbye(params) do
-  case params do
-"world" -> "hello"
-_ -> "goodbye"
-  end
+    case params do
+      "world" -> "hello"
+      _ -> "goodbye"
+    end
   end
 end
