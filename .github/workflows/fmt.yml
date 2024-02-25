@@ -36,8 +36,4 @@ jobs:
         run: mix compile --warnings-as-errors
       - name: Run formatter
         run: mix format
-      - name: Commit changes
-        uses: EndBug/add-and-commit@v9
-        with:
-            author_name: ${{ github.actor }}
-            message: 'Format code'
+      - uses: actions4git/add-commit-push@v1
