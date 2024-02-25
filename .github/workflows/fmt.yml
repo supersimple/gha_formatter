@@ -39,3 +39,6 @@ jobs:
       - name: Run formatter
         run: mix format
       - uses: actions4git/add-commit-push@v1
+        with:
+          commit-author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          commit-message: "Format code"
