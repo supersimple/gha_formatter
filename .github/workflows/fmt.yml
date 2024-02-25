@@ -6,12 +6,31 @@ on:
   pull_request:
     types: [opened, reopened, synchronize]
 
+env:
+    MIX_ENV: production
+    elixir: "1.15"
+    otp: "26"
+
 jobs:
   checkout_and_format:
     name: Checkout and format the code
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: ${{ env.otp }}
+          elixir-version: ${{ env.elixir }}
+      - name: Install mix dependencies
+        run: |
+          mix local.rebar --force
+          mix local.hex --force
+          mix deps.get
+          mix deps.compile
+      - name: Check mix.lock for unused dependencies
+        run: mix deps.unlock --check-unused
+      - name: Compile project
+        run: mix compile --warnings-as-errors
       - name: Run formatter
         run: mix format
       - name: Commit changes
