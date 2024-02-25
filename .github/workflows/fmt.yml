@@ -1,22 +1,17 @@
-name: Format Code
+name: Make sure Elixir code is formatted 
 
 on:
-  push:
-    branches: [main]
   pull_request:
     types: [opened, reopened, synchronize]
 
 jobs:
-  checkout_and_format:
-    name: Checkout and format the code
+  format:
     runs-on: ubuntu-latest
+    permissions:
+        contents: write
     steps:
-      - uses: actions/checkout@v4
-      - name: Run formatter
-        run: mix format
-      - name: Commit changes
-        uses: EndBug/add-and-commit@v9
-        with:
-        author_name: Formatter Action
-        author_email: noreply@gha.io
-        message: 'Format code'
+    - uses: supersimple/mix-format@v1.0.9
+      with:
+        elixir_version: "1.15"
+        otp_version: "26"
+        mix_env: "dev"
