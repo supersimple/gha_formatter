@@ -3,6 +3,6 @@ defmodule GhaSandboxTest do
   doctest GhaSandbox
 
   test "greets the world" do
-    assert GhaSandbox.hello() == :world
+assert GhaSandbox.hello() == :world
   end
 end
