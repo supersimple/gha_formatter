@@ -7,9 +7,8 @@ on:
 jobs:
   format:
     runs-on: ubuntu-latest
-    using: "composite"
     steps:
-    - uses: supersimple/mix-format@v1.0.3
+    - uses: supersimple/mix-format@v1.0.4
       with:
         elixir_version: "1.15"
         otp_version: "26"
