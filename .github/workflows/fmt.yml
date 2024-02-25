@@ -10,7 +10,7 @@ jobs:
     permissions:
         contents: write
     steps:
-    - uses: supersimple/mix-format@v1.0.9
+    - uses: supersimple/mix-format@v1
       with:
         elixir_version: "1.15"
         otp_version: "26"
