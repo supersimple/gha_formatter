@@ -1,0 +1,22 @@
+name: Format Code
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  checkout_and_format:
+    name: Checkout and format the code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run formatter
+        run: mix format
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+        author_name: Formatter Action
+        author_email: noreply@gha.io
+        message: 'Format code'
